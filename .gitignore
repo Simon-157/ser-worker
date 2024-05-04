@@ -1,0 +1,25 @@
+
+# Ignore build artifacts
+/build/
+
+# Ignore dependencies
+/node_modules/
+
+# Ignore log files
+*.log
+
+# Ignore temporary files
+*.tmp
+
+# Ignore compiled binaries
+*.exe
+*.dll
+*.so
+
+# Ignore IDE specific files
+.idea/
+.vscode/
+
+# Ignore system files
+.DS_Store
+Thumbs.db

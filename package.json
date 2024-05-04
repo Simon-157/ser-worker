@@ -1,0 +1,23 @@
+{
+  "name": "ser-worker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node index.ts",
+    "dev": "nodemon index.ts",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.21",
+    "@types/socket.io": "^3.0.2",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.0",
+    "socket.io": "^4.7.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5",
+    "winston": "^3.13.0"
+  }
+}
