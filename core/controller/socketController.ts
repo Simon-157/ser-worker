@@ -1,12 +1,15 @@
 import { Server, Socket } from 'socket.io';
-import { createSession } from '../service/firebaseService';
-import { createQueue, sendToQueue, cleanupQueue } from '../service/queueService';
 import { startProcessing } from './audioController';
+import { logger } from '@config/logger';
+import { createSession } from '@core/service/firebaseService';
+import { createQueue, sendToQueue, cleanupQueue } from '@core/service/queueService';
 
 export function setupSocket(io: Server): void {
-  io.on('connection', (socket: Socket) => {
-    console.log('A user connected');
+    //
+    logger.log("info", "Setting up socket");
 
+  io.on('connection', (socket: Socket) => {
+    logger.log("info", "client connected");
     socket.on('create_session', async (sessionId: string, userId: string) => {
       try {
         createQueue(sessionId);
@@ -18,7 +21,7 @@ export function setupSocket(io: Server): void {
         startProcessing(sessionId, io, userId);
     } catch (error) {
         // Handle error
-        console.error('Error creating session:', error);
+        logger.error('Error creating session:', error);
         socket.emit('error', 'Failed to create session');
       }
     });
@@ -28,13 +31,13 @@ export function setupSocket(io: Server): void {
         sendToQueue(sessionId, audioData);
       } catch (error) {
         // Handle error
-        console.error('Error sending audio chunk to queue:', error);
+        logger.error('Error sending audio chunk to queue:', error);
         socket.emit('error', 'Failed to send audio chunk to queue');
       }
     });
 
     socket.on('disconnect', () => {
-      console.log('User disconnected');
+      logger.log("info", "client disconnected");
     });
 
     socket.on('end_session', async (sessionId: string) => {
@@ -45,9 +48,11 @@ export function setupSocket(io: Server): void {
         io.to(sessionId).emit('session_ended');
       } catch (error) {
         // Handle error
-        console.error('Error ending session:', error);
+        logger.error('Error ending session:', error);
         socket.emit('error', 'Failed to end session');
       }
     });
   });
+
+  logger.log("info", "Socket setup complete");
 }

@@ -1,7 +1,8 @@
-import { logger } from "../../config/logger";
-import { sendEmotionToClient } from "../../util/soc";
-import { storeEmotion } from "../service/firebaseService";
-import { startWorker } from "../service/queueService";
+
+import { logger } from "@config/logger";
+import { storeEmotion } from "@core/service/firebaseService";
+import { startWorker } from "@core/service/queueService";
+import { sendEmotionToClient } from "@util/soc";
 import { predictEmotion } from "./emotionController";
 
 

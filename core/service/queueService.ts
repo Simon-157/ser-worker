@@ -1,6 +1,6 @@
+import { logger } from '@config/logger';
+import { redisClient } from '@config/redis';
 import { Queue, Worker } from 'bullmq';
-import { redisClient } from '../../config/redis';
-import { logger } from '../../config/logger';
 
 const audioQueues: Record<string, Queue> = {};
 const workers: Record<string, Worker> = {};

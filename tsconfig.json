@@ -4,6 +4,12 @@
     "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "paths": {
+      "@core/*": ["core/*"],
+      "@config/*": ["config/*"],
+      "@util/*": ["util/*"]
+    }
   }
 }

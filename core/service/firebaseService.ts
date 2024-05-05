@@ -1,6 +1,6 @@
-import { db } from "../../config/firebase";
+import { db } from '@config/firebase';
+import { logger } from '@config/logger';
 import { collection, doc, setDoc, getDoc, Timestamp, updateDoc, arrayUnion,  } from 'firebase/firestore';
-import { logger } from "../../config/logger";
 
 
 // types
