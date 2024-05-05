@@ -24,7 +24,7 @@ const config = {
 
 addColors(colors)
 
-const transport = process.env.NODE_ENV === "production" ? new transports.Console() : new transports.File({ filename: "logs/app.log" })
+const transport = process.env.NODE_ENV === "development" ? new transports.Console() : new transports.File({ filename: "logs/app.log" })
 
 const struct = format.combine(
     format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
@@ -34,10 +34,12 @@ const struct = format.combine(
 )
 
 
-const logger = createLogger({
+const logger: Logger = createLogger({
     level: "debug",
     levels: config.levels,
     format: struct,
     transports: [transport],
     exitOnError: false
 })
+
+export { logger }
